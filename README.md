@@ -1,6 +1,6 @@
 # temp_sensor
 
-This is a summary of my microcontrol project. The actual hardware is a esp 8266 NodeMCU microcontrol running micropython with a DHT22 sensor connected to it. 
+This is a summary of my microcontrol project. The actual hardware is a esp 8266 NodeMCU microcontrol running micropython with a DHT22 sensor connected to it. Once its setup the microcontrol will publish temperature and humidity to a MQTT broker.
 
 <!-- Tutorial used: http://docs.micropython.org/en/latest/esp8266/quickref.html -->
 
@@ -38,7 +38,7 @@ Ctrl-a then k then y
 ```
 
 ### Get IP of microcontrol
-A fresh install of MicroPython has a wifi AP. Read more at http://docs.micropython.org/en/latest/esp8266/tutorial/intro.html#wifi
+A fresh install of MicroPython has a wifi AP. Read the following to figure out the IP of the microcontrol and how to connect to it http://docs.micropython.org/en/latest/esp8266/tutorial/intro.html#wifi
 
 
 
@@ -60,7 +60,7 @@ Upload all of the .py files from this repository to the microcontrol.
 
 
 ## Configure microcontrol
-Once ... edit the config.py file so that...
+Make sure to specify the correct values in the config.py file so that the microcontrol will connect to the correct wifi and publish to right broker.
 
 ## Start the microcontrol
-...
+Once the microcontrol is powered up it will start automatically and publish values to the configured MQTT broker at the given interval.
