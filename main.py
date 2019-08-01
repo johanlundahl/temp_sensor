@@ -1,11 +1,12 @@
+import config
 import ujson
 import sensor
 
 def connect_and_subscribe():
-    global client_id, mqtt_server
-    client = MQTTClient(client_id, mqtt_server)
+    global client_id
+    client = MQTTClient(client_id, config.mqtt_server)
     client.connect()
-    print('Connected to %s MQTT broker' % (mqtt_server))
+    print('Connected to %s MQTT broker' % (config.mqtt_server))
     return client
 
 def restart_and_reconnect():
@@ -20,10 +21,10 @@ except OSError as e:
 
 while True:
     try:
-        time.sleep(message_interval)
+        time.sleep(config.message_interval)
         temperature, humidity = sensor.read()
-        reading = { 'temperature': temperature, 'humidity': humidity, 'name': sensor_name }
-        client.publish(topic_pub, ujson.dumps(reading))
+        reading = { 'temperature': temperature, 'humidity': humidity, 'name': config.sensor_name }
+        client.publish(config.topic_pub, ujson.dumps(reading))
         print('Published', reading, 'to topic')
     except OSError as e:
         restart_and_reconnect()
