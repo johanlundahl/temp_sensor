@@ -14,7 +14,7 @@ Esptool will be used to load micropython to the esp8266. Install esptool with
 $ pip install esptool
 ```
 
-Erase the flash using the following command
+Connect the esp8266 with USB. Erase the flash using the following command
 ```
 $ python3 esptool.py --port /dev/tty.usbserial-1410 erase_flash
 ```
