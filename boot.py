@@ -15,7 +15,7 @@ client_id = ubinascii.hexlify(machine.unique_id())
 station = network.WLAN(network.STA_IF)
 
 station.active(True)
-station.connect(wifi_name, wifi_password)
+station.connect(config.wifi_name, config.wifi_password)
 
 while station.isconnected() == False:
     pass
