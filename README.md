@@ -27,6 +27,21 @@ Deploy the new firmware using
 $ python3 esptool.py --port /dev/tty.usbserial-1410 --baud 460800 write_flash --flash_size=detect 0 esp8266-20190125-v1.10.bin 
 ```
 
+## Configure microcontrol
+Make sure to specify the correct values in the config.py file so that the microcontrol will connect to the correct wifi and publish to right broker.
+
+Upload the following files to the microcontrol:
+* temp_sensor/boot.py
+* temp_sensor/config.py
+* temp_sensor/main.py
+* temp_sensor/sensor.py
+* temp_sensor/umqttsimple.py
+
+## Start the microcontrol
+Once the microcontrol is powered up it will start automatically and publish values to the configured MQTT broker at the given interval.
+
+## NodeMCU Howto
+
 ### Connect to the esp8266
 
 Connect to the esp8266 running micropython through the terminal using
@@ -41,7 +56,6 @@ Ctrl-a then k then y
 
 ### Get IP of microcontrol
 A fresh install of MicroPython has a wifi AP. Read the following to figure out the IP of the microcontrol and how to connect to it http://docs.micropython.org/en/latest/esp8266/tutorial/intro.html#wifi
-
 
 
 ### Download and upload of files
@@ -60,9 +74,3 @@ $ python3 webrepl_cli.py local-file-to-upload.py target-ip:uploaded-file-name.py
 
 Upload all of the .py files from this repository to the microcontrol.
 
-
-## Configure microcontrol
-Make sure to specify the correct values in the config.py file so that the microcontrol will connect to the correct wifi and publish to right broker.
-
-## Start the microcontrol
-Once the microcontrol is powered up it will start automatically and publish values to the configured MQTT broker at the given interval.
