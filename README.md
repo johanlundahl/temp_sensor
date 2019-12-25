@@ -1,4 +1,4 @@
-# temp_sensor
+# Temp Sensor
 
 This is a summary of my microcontrol project. The actual hardware is a esp 8266 NodeMCU microcontrol running micropython with a DHT22 sensor connected to it. Once its setup the microcontrol will publish temperature and humidity to a MQTT broker.
 
