@@ -2,16 +2,11 @@
 
 This is a summary of my microcontrol project. The actual hardware is a esp 8266 NodeMCU microcontrol running micropython with a DHT22 sensor connected to it. Once its setup the microcontrol will publish temperature and humidity to a MQTT broker.
 
-This project is intended to use with [Home Monitor](http://github.com/johanlundahl/home_monitor), [Home Store](http://github.com/johanlundahl/home_store) and [Home Eye](http://github.com/johanlundahl/home_eye).
+This project is suitable to run on a Raspberry Pi and is intended to use with [Home Monitor](http://github.com/johanlundahl/home_monitor), [Home Store](http://github.com/johanlundahl/home_store), [Home Eye](http://github.com/johanlundahl/home_eye) and [Mosquitto MQTT Broker](https://randomnerdtutorials.com/how-to-install-mosquitto-broker-on-raspberry-pi/).
 
 ![NodeMCU and DHT22](img/nodemcu_dht22.jpg)
 
 <!-- Tutorial used: http://docs.micropython.org/en/latest/esp8266/quickref.html -->
-
-<!--
-MQTT on ESP8266
-https://randomnerdtutorials.com/micropython-mqtt-esp32-esp8266/
--->
 
 ## Wire the thing
 Connect the DHT22 sensor to the ESP8266 according to:
@@ -42,7 +37,12 @@ Deploy the new firmware using
 $ python3 esptool.py --port /dev/tty.usbserial-1410 --baud 460800 write_flash --flash_size=detect 0 esp8266-20190125-v1.10.bin 
 ```
 
-## Configure microcontrol
+Clone this git repo
+
+```
+$ git clone https://github.com/johanlundahl/home_monitor
+```
+
 Make sure to specify the correct values in the config.py file so that the microcontrol will connect to the correct wifi and publish to right broker.
 
 Upload the following files to the microcontrol:
@@ -53,6 +53,16 @@ Upload the following files to the microcontrol:
 * temp_sensor/umqttsimple.
 
 
+Edit the `temp_sensor/config.py` to set the following configuration parameters:
+```
+wifi_name = 'wifi-ssid-name'
+wifi_password = 'wifi-password'
+mqtt_server = 'ip-address-of-mqtt-broker'
+topic_pub = b'mqtt-topic-name'
+message_retry = 60			# seconds to wait between publish failures
+deep_sleep_interval	= 60	# seconds to set device in deep sleep
+sensor_name = 'name-of-the-sensor'
+```
 
 ## Start the microcontrol
 Once the microcontrol is powered up it will start automatically and publish values to the configured MQTT broker at the given interval.
