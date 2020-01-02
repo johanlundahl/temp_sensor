@@ -14,10 +14,10 @@ https://randomnerdtutorials.com/micropython-mqtt-esp32-esp8266/
 ## Wire the thing
 Connect the DHT22 sensor to the ESP8266 according to:
 * the `VCC` pin (marked `+`) connects to a `3V` pin on the microcontrol 
-* the `DATA` pin (marked `Out`) connects to the `D5` pin (e.g. `GPIO14`) on the microcontrol
+* the `DATA` pin (marked `Out`) connects to the `D5` pin (i.e. `GPIO14`) on the microcontrol
 * the `GND` pin (marked `-`) connects to a `G` pin on the microcontrol
 
-If the microcontrol shall be powered by battery then the `GPIO16` needs to connect to the `RST` pin so that the microcontrol can wakt itself up. See this [blog post](
+If the microcontrol shall be powered by battery then the `Do` pin (i.e. `GPIO16`) needs to connect to the `RST` pin so that the microcontrol can wakt itself up. See this [blog post](
 https://randomnerdtutorials.com/micropython-esp8266-deep-sleep-wake-up-sources/) for more information.
 
 ## Installation
