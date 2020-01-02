@@ -6,6 +6,19 @@ This is a summary of my microcontrol project. The actual hardware is a esp 8266 
 
 <!-- Tutorial used: http://docs.micropython.org/en/latest/esp8266/quickref.html -->
 
+<!--
+MQTT on ESP8266
+https://randomnerdtutorials.com/micropython-mqtt-esp32-esp8266/
+-->
+
+## Wire the thing
+Connect the DHT22 sensor to the ESP8266 according to:
+* the `VCC` pin (marked `+`) connects to a `3V` pin on the microcontrol 
+* the `DATA` pin (marked `Out`) connects to the `D5` pin (e.g. `GPIO14`) on the microcontrol
+* the `GND` pin (marked `-`) connects to a `G` pin on the microcontrol
+
+If the microcontrol shall be powered by battery then the `GPIO16` needs to connect to the `RST` pin so that the microcontrol can wakt itself up. See this [blog post](
+https://randomnerdtutorials.com/micropython-esp8266-deep-sleep-wake-up-sources/) for more information.
 
 ## Installation
 
@@ -35,7 +48,9 @@ Upload the following files to the microcontrol:
 * temp_sensor/config.py
 * temp_sensor/main.py
 * temp_sensor/sensor.py
-* temp_sensor/umqttsimple.py
+* temp_sensor/umqttsimple.
+
+
 
 ## Start the microcontrol
 Once the microcontrol is powered up it will start automatically and publish values to the configured MQTT broker at the given interval.
@@ -54,9 +69,16 @@ Once you want to end your termminal session simply exit by entering
 Ctrl-a then k then y 
 ```
 
-### Get IP of microcontrol
+### Microcontrol wifi AP
 A fresh install of MicroPython has a wifi AP. Read the following to figure out the IP of the microcontrol and how to connect to it http://docs.micropython.org/en/latest/esp8266/tutorial/intro.html#wifi
 
+### Get IP of microcontrol
+The IP of the microcontrol is needed when uploading files to the microcontrol. Log on to the microcontrol and enter the following from the command line:
+```
+>>> import network
+>>> station = network.WLAN(network.STA_IF)
+>>> print(station.ifconfig())
+```
 
 ### Download and upload of files
 Use the Web REPL to download and upload files to the esp8266 device. Start by enabling Web REPL on the device by entering the following command and follow the instructions:
