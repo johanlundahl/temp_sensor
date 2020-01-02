@@ -52,6 +52,7 @@ Upload the following files to the microcontrol:
 * temp_sensor/sensor.py
 * temp_sensor/umqttsimple.
 
+If the microcontrol is powered by a battery then upload `temp_sensor/main_battery.py` as `main.py`instead. 
 
 Edit the `temp_sensor/config.py` to set the following configuration parameters:
 ```
@@ -59,8 +60,8 @@ wifi_name = 'wifi-ssid-name'
 wifi_password = 'wifi-password'
 mqtt_server = 'ip-address-of-mqtt-broker'
 topic_pub = b'mqtt-topic-name'
-message_retry = 60			# seconds to wait between publish failures
-deep_sleep_interval	= 60	# seconds to set device in deep sleep
+message_retry = 60		# seconds to wait between publish failures
+deep_sleep_interval = 60	# seconds to set device in deep sleep
 sensor_name = 'name-of-the-sensor'
 ```
 
