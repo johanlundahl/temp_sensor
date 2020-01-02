@@ -23,7 +23,7 @@ Download micropython distribution for the esp8266 board at http://micropython.or
 
 Esptool will be used to load micropython to the esp8266. Install esptool with
 ```
-$ pip install esptool
+$ pip3 install esptool
 ```
 
 Connect the esp8266 with USB. Erase the flash using the following command
