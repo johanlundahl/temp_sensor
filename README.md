@@ -14,12 +14,12 @@ Connect the DHT22 sensor to the ESP8266 according to:
 * the `DATA` pin (marked `Out`) connects to the `D5` pin (i.e. `GPIO14`) on the microcontrol
 * the `GND` pin (marked `-`) connects to a `G` pin on the microcontrol
 
-If the microcontrol shall be powered by battery then the `Do` pin (i.e. `GPIO16`) needs to connect to the `RST` pin so that the microcontrol can wakt itself up. See this [blog post](
-https://randomnerdtutorials.com/micropython-esp8266-deep-sleep-wake-up-sources/) for more information.
+If the microcontrol shall be powered by battery then the `Do` pin (i.e. `GPIO16`) needs to connect to the `RST` pin so that the microcontrol can wake itself up. If you will power the microcontrol by USB then jump to the next section. See this [blog post](
+https://randomnerdtutorials.com/micropython-esp8266-deep-sleep-wake-up-sources/) for more information on deep sleep and wake up functionality.
 
 ## Installation
 
-Download micropython distribution for the esp8266 board at http://micropython.org/download#esp8266.
+Download micropython distribution for the esp8266 board at http://micropython.org/download/esp8266/.
 
 Esptool will be used to load micropython to the esp8266. Install esptool with
 ```
@@ -45,15 +45,6 @@ $ git clone https://github.com/johanlundahl/home_monitor
 
 Make sure to specify the correct values in the config.py file so that the microcontrol will connect to the correct wifi and publish to right broker.
 
-Upload the following files to the microcontrol:
-* temp_sensor/boot.py
-* temp_sensor/config.py
-* temp_sensor/main.py
-* temp_sensor/sensor.py
-* temp_sensor/umqttsimple.
-
-If the microcontrol is powered by a battery then upload `temp_sensor/main_battery.py` as `main.py`instead. 
-
 Edit the `temp_sensor/config.py` to set the following configuration parameters:
 ```
 wifi_name = 'wifi-ssid-name'
@@ -64,6 +55,16 @@ message_retry = 60		# seconds to wait between publish failures
 deep_sleep_interval = 60	# seconds to set device in deep sleep
 sensor_name = 'name-of-the-sensor'
 ```
+
+Upload the following files according to the [download and upload of files](https://github.com/johanlundahl/temp_sensor#download-and-upload-of-files) section. Upload the following files to the microcontrol:
+* temp_sensor/boot.py
+* temp_sensor/config.py
+* temp_sensor/main.py
+* temp_sensor/sensor.py
+* temp_sensor/umqttsimple.
+
+If the microcontrol is powered by a battery then upload `temp_sensor/main_battery.py` as `main.py`instead. 
+
 
 ## Start the microcontrol
 Once the microcontrol is powered up it will start automatically and publish values to the configured MQTT broker at the given interval.
