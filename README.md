@@ -58,17 +58,12 @@ Upload the following files according to the [download and upload of files](https
 
 ```
 temp_sensor/
+│   boot.py
 │   config.py
 │   main.py
 │   sensor.py
 │   umqttsimple.py
 ```
-
-* temp_sensor/boot.py
-* temp_sensor/config.py
-* temp_sensor/main.py
-* temp_sensor/sensor.py
-* temp_sensor/umqttsimple.
 
 If the microcontrol is powered by a battery then upload `temp_sensor/main_battery.py` as `main.py`instead. 
 
