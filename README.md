@@ -21,9 +21,9 @@ https://randomnerdtutorials.com/micropython-esp8266-deep-sleep-wake-up-sources/)
 
 Download micropython distribution for the esp8266 board at http://micropython.org/download/esp8266/.
 
-Esptool will be used to load micropython to the esp8266. Install esptool with
+Esptool will be used to load micropython to the esp8266. Install required python modules
 ```
-$ pip3 install esptool
+$ sudo pip3 install -r requirements.txt
 ```
 
 Connect the esp8266 with USB. Erase the flash using the following command
