@@ -44,14 +44,14 @@ $ sudo python3 esptool.py --port /dev/tty.usbserial-1410 --baud 460800 write_fla
 Make sure to specify the correct values in the config.py file so that the microcontrol will connect to the correct wifi and publish to right broker.
 
 Edit the `temp_sensor/config.py` to set the following configuration parameters:
-```
-wifi_name = 'wifi-ssid-name'
-wifi_password = 'wifi-password'
-mqtt_server = 'ip-address-of-mqtt-broker'
-topic_pub = b'mqtt-topic-name'
-message_retry = 60		# seconds to wait between publish failures
-deep_sleep_interval = 60	# seconds to set device in deep sleep
-sensor_name = 'name-of-the-sensor'
+```python
+wifi_name 			= 'wifi-ssid-name'
+wifi_password 		= 'wifi-password'
+mqtt_server 		= 'ip-address-of-mqtt-broker'
+topic_pub 			= b'mqtt-topic-name'
+message_retry 		= 60 # seconds to wait between publish failures
+deep_sleep_interval = 60 # seconds to set device in deep sleep
+sensor_name 		= 'name-of-the-sensor'
 ```
 
 Upload the following files according to the [download and upload of files](https://github.com/johanlundahl/temp_sensor#download-and-upload-of-files) section. Upload the following files to the microcontrol:
@@ -90,7 +90,7 @@ A fresh install of MicroPython has a wifi AP. Read the following to figure out t
 
 ### Get IP of microcontrol
 The IP of the microcontrol is needed when uploading files to the microcontrol. Log on to the microcontrol and enter the following from the command line:
-```
+```python
 >>> import network
 >>> station = network.WLAN(network.STA_IF)
 >>> print(station.ifconfig())
@@ -98,7 +98,7 @@ The IP of the microcontrol is needed when uploading files to the microcontrol. L
 
 ### Download and upload of files
 Use the Web REPL to download and upload files to the esp8266 device. Start by enabling Web REPL on the device by entering the following command and follow the instructions:
-```
+```python
 $ import webrepl_setup
 ```
 
