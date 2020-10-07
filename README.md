@@ -19,26 +19,26 @@ https://randomnerdtutorials.com/micropython-esp8266-deep-sleep-wake-up-sources/)
 
 ## Installation
 
-Esptool will be used to load micropython to the esp8266. Install required python modules
+Clone this git repo
+
+```
+$ git clone https://github.com/johanlundahl/temp_sensor
+```
+
+Esptool will be used to load micropython to the esp8266. Install this and all other required python modules
 ```
 $ sudo pip3 install -r requirements.txt
 ```
 
 Connect the esp8266 with USB. Erase the flash using the following command
 ```
-$ python3 esptool.py --port /dev/tty.usbserial-1410 erase_flash
+$ sudo python3 esptool.py --port /dev/tty.usbserial-1410 erase_flash
 ```
 <!-- /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/esptool.py -->
 
 Download micropython distribution for the esp8266 board at http://micropython.org/download/esp8266/. Deploy the downloaded firmware using
 ```
-$ python3 esptool.py --port /dev/tty.usbserial-1410 --baud 460800 write_flash --flash_size=detect 0 esp8266-20190125-v1.10.bin 
-```
-
-Clone this git repo
-
-```
-$ git clone https://github.com/johanlundahl/home_monitor
+$ sudo python3 esptool.py --port /dev/tty.usbserial-1410 --baud 460800 write_flash --flash_size=detect 0 esp8266-20190125-v1.10.bin 
 ```
 
 Make sure to specify the correct values in the config.py file so that the microcontrol will connect to the correct wifi and publish to right broker.
