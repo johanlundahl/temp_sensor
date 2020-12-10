@@ -98,7 +98,7 @@ deep_sleep_interval = 60 # seconds to set device in deep sleep
 sensor_name 		= 'name-of-the-sensor'
 ```
 
-Upload the following files according to the [download and upload of files](https://github.com/johanlundahl/temp_sensor#download-and-upload-of-files) section. Upload the following files to the microcontrol:
+Upload the following files according to the [download and upload of files](https://github.com/johanlundahl/temp_sensor#file-transfers) section. Upload the following files to the microcontrol:
 
 ```
 temp_sensor/
