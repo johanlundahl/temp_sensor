@@ -17,7 +17,7 @@ Connect the DHT22 sensor to the ESP8266 according to:
 If the microcontrol shall be powered by battery then the `Do` pin (i.e. `GPIO16`) needs to connect to the `RST` pin so that the microcontrol can wake itself up. If you will power the microcontrol by USB then jump to the next section. See this [blog post](
 https://randomnerdtutorials.com/micropython-esp8266-deep-sleep-wake-up-sources/) for more information on deep sleep and wake up functionality.
 
-## Installation
+## Install MicroPython
 
 Clone this git repo
 
@@ -40,6 +40,50 @@ Download micropython distribution for the esp8266 board at http://micropython.or
 ```
 $ sudo python3 esptool.py --port /dev/tty.usbserial-1410 --baud 460800 write_flash --flash_size=detect 0 esp8266-20190125-v1.10.bin 
 ```
+
+## Setup the application on the microcontrol
+
+### File transfers
+
+Use the Web REPL to download and upload files to the esp8266 device. This will enable you to download and upload files to the device. Files can be uploaded or downloaded with or without wire.
+
+#### Using Wifi
+A fresh install of MicroPython has a Wifi AP. Read the following to figure out the IP of the microcontrol and how to connect to it http://docs.micropython.org/en/latest/esp8266/tutorial/intro.html#wifi
+
+When connected to the Wifi of the microcontrol then files can be downloaded and uploaded with the online web UI at http://micropython.org/webrepl/.
+
+1. Open http://micropython.org/webrepl/ in a browser with Internet connection
+2. Connect to microcontrol wifi
+3. Connect and give the password
+4. Download a file that you want to edit
+5. Upload the changed file
+6. Restart the microcontrol using
+
+```
+>>> import machine
+>>> machine.reset()
+```
+
+#### Using wire
+
+Clone Git repo https://github.com/micropython/webrepl to your computer. 
+
+Start by enabling Web REPL on the device by entering the following command and follow the instructions:
+```python
+$ import webrepl_setup
+```
+
+To download a file through the command line using webrepl:
+```
+$ python3 webrepl_cli.py target-ip:file-to-download.py .
+```
+
+To upload a file throught the command line using webrepl:
+```
+$ python3 webrepl_cli.py local-file-to-upload.py target-ip:uploaded-file-name.py
+```
+
+### Upload application
 
 Make sure to specify the correct values in the config.py file so that the microcontrol will connect to the correct wifi and publish to right broker.
 
@@ -68,14 +112,9 @@ temp_sensor/
 If the microcontrol is powered by a battery then upload `temp_sensor/main_battery.py` as `main.py`instead. 
 
 
-## Start the microcontrol
-Once the microcontrol is powered up it will start automatically and publish values to the configured MQTT broker at the given interval.
+### Connect using Terminal
 
-## NodeMCU Howto
-
-### Connect to the esp8266
-
-Connect to the esp8266 running micropython through the terminal using
+To connect to the microcontrol you need to connect it using a USB wire. Connect to the esp8266 running micropython through the terminal using
 ```
 $ screen /dev/tty.usbserial-1410 115200
 ```
@@ -85,9 +124,6 @@ Once you want to end your termminal session simply exit by entering
 Ctrl-a then k then y 
 ```
 
-### Microcontrol wifi AP
-A fresh install of MicroPython has a wifi AP. Read the following to figure out the IP of the microcontrol and how to connect to it http://docs.micropython.org/en/latest/esp8266/tutorial/intro.html#wifi
-
 ### Get IP of microcontrol
 The IP of the microcontrol is needed when uploading files to the microcontrol. Log on to the microcontrol and enter the following from the command line:
 ```python
@@ -96,19 +132,5 @@ The IP of the microcontrol is needed when uploading files to the microcontrol. L
 >>> print(station.ifconfig())
 ```
 
-### Download and upload of files
-Use the Web REPL to download and upload files to the esp8266 device. Start by enabling Web REPL on the device by entering the following command and follow the instructions:
-```python
-$ import webrepl_setup
-```
-
-Clone Git repo https://github.com/micropython/webrepl to your computer or use the online web UI at http://micropython.org/webrepl/. This will enable you to download and upload files to the device.
-
-
-To upload a file throught the command line using webrepl:
-```
-$ python3 webrepl_cli.py local-file-to-upload.py target-ip:uploaded-file-name.py
-```
-
-Upload all of the .py files from this repository to the microcontrol.
-
+## Start the microcontrol
+Once the microcontrol is powered up it will start automatically and publish values to the configured MQTT broker at the given interval.
